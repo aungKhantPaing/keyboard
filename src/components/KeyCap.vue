@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { Howl, Howler } from 'howler';
+// import { Howl, Howler } from 'howler';
 export default {
   props: {
     label: {
