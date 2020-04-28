@@ -21,34 +21,34 @@
       </div>
 
       <div class="row2">
-        <KeyCap label="`" side-label="~" />
-        <KeyCap label="1" side-label="!" />
-        <KeyCap label="2" side-label="@" />
-        <KeyCap label="3" side-label="#" />
-        <KeyCap label="4" side-label="$" />
-        <KeyCap label="5" side-label="%" />
-        <KeyCap label="6" side-label="^" />
-        <KeyCap label="7" side-label="&amp;" />
-        <KeyCap label="8" side-label="*" />
-        <KeyCap label="9" side-label="(" />
-        <KeyCap label="0" side-label=")" />
-        <KeyCap label="-" side-label="_" />
-        <KeyCap label="=" side-label="+" />
+        <KeyCap label="`" side-label="~" :key-code="192" />
+        <KeyCap label="1" side-label="!" :key-code="49" />
+        <KeyCap label="2" side-label="@" :key-code="50" />
+        <KeyCap label="3" side-label="#" :key-code="51" />
+        <KeyCap label="4" side-label="$" :key-code="52" />
+        <KeyCap label="5" side-label="%" :key-code="53" />
+        <KeyCap label="6" side-label="^" :key-code="54" />
+        <KeyCap label="7" side-label="&amp;" :key-code="55" />
+        <KeyCap label="8" side-label="*" :key-code="56" />
+        <KeyCap label="9" side-label="(" :key-code="57" />
+        <KeyCap label="0" side-label=")" :key-code="48" />
+        <KeyCap label="-" side-label="_" :key-code="189" />
+        <KeyCap label="=" side-label="+" :key-code="187" />
         <KeyCap delete-key />
       </div>
 
       <div class="row3">
         <KeyCap tab-key />
-        <KeyCap label="Q" />
-        <KeyCap label="W" />
-        <KeyCap label="E" />
-        <KeyCap label="R" />
-        <KeyCap label="T" />
-        <KeyCap label="Y" />
-        <KeyCap label="U" />
-        <KeyCap label="I" />
-        <KeyCap label="O" />
-        <KeyCap label="P" />
+        <KeyCap label="Q" :key-code="81" />
+        <KeyCap label="W" :key-code="87" />
+        <KeyCap label="E" :key-code="69" />
+        <KeyCap label="R" :key-code="82" />
+        <KeyCap label="T" :key-code="84" />
+        <KeyCap label="Y" :key-code="89" />
+        <KeyCap label="U" :key-code="85" />
+        <KeyCap label="I" :key-code="73" />
+        <KeyCap label="O" :key-code="79" />
+        <KeyCap label="P" :key-code="80" />
         <KeyCap label="[" side-label="{" />
         <KeyCap label="]" side-label="}" />
         <KeyCap label="\" side-label="|" />
@@ -56,15 +56,15 @@
 
       <div class="row4">
         <KeyCap cap-key />
-        <KeyCap label="A" />
-        <KeyCap label="S" />
-        <KeyCap label="D" />
-        <KeyCap label="F" />
-        <KeyCap label="G" />
-        <KeyCap label="H" />
-        <KeyCap label="J" />
-        <KeyCap label="K" />
-        <KeyCap label="L" />
+        <KeyCap label="A" :key-code="65" />
+        <KeyCap label="S" :key-code="83" />
+        <KeyCap label="D" :key-code="68" />
+        <KeyCap label="F" :key-code="70" />
+        <KeyCap label="G" :key-code="71" />
+        <KeyCap label="H" :key-code="72" />
+        <KeyCap label="J" :key-code="74" />
+        <KeyCap label="K" :key-code="75" />
+        <KeyCap label="L" :key-code="76" />
         <KeyCap label=";" side-label=":" />
         <KeyCap label="'" side-label='"' />
         <KeyCap return-key />
@@ -72,13 +72,13 @@
 
       <div class="row5">
         <KeyCap shift-key-left />
-        <KeyCap label="Z" />
-        <KeyCap label="X" />
-        <KeyCap label="C" />
-        <KeyCap label="V" />
-        <KeyCap label="B" />
-        <KeyCap label="N" />
-        <KeyCap label="M" />
+        <KeyCap label="Z" :key-code="90" />
+        <KeyCap label="X" :key-code="88" />
+        <KeyCap label="C" :key-code="67" />
+        <KeyCap label="V" :key-code="86" />
+        <KeyCap label="B" :key-code="66" />
+        <KeyCap label="N" :key-code="78" />
+        <KeyCap label="M" :key-code="77" />
         <KeyCap label="," side-label="&lt;" />
         <KeyCap label="." side-label=">" />
         <KeyCap label="/" side-label="?" />
@@ -90,7 +90,7 @@
         <KeyCap label="control" side-label="^" ctrl-key />
         <KeyCap label="option" side-label="⌥" ctrl-key />
         <KeyCap label="command" side-label="⌘" ctrl-key cmd-key />
-        <KeyCap spacebar />
+        <KeyCap spacebar :key-code="32" />
         <KeyCap label="command" side-label="⌘" ctrl-key cmd-key />
         <KeyCap label="option" side-label="⌥" ctrl-key />
         <KeyCap label="&lt;" />
@@ -115,10 +115,10 @@ export default {
   components: {
     KeyCap,
   },
-  methods: {
-    onKeyDown(evnt) {
-      console.log(evnt);
-    },
+  mounted() {
+    window.addEventListener('keypress', (event) => {
+      console.log('PRESSED: ' + event.key + ' | ' + event.keyCode);
+    });
   },
 };
 </script>
@@ -126,6 +126,7 @@ export default {
 <style lang="scss" scoped>
 $rose-gold: #fddbc9;
 $key-color: #202124;
+
 .container {
   display: flex;
   flex-direction: column;
@@ -136,6 +137,8 @@ $key-color: #202124;
   border: 2px solid $rose-gold;
   border-radius: 35px;
   background: $rose-gold;
+  padding: 0px;
+  box-sizing: unset;
 }
 
 .key-container {
@@ -172,7 +175,7 @@ $key-color: #202124;
 }
 
 .f-keys {
-  font-size: 0.1em;
+  font-size: 0.1em !important;
   letter-spacing: -0.05em;
   display: flex;
   justify-content: center;
@@ -194,7 +197,7 @@ $key-color: #202124;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: 0.7em;
+  font-size: 0.7em !important;
 }
 
 .esc > span:first-of-type {
@@ -288,15 +291,6 @@ $key-color: #202124;
   margin: 0 4% 4% 0;
 }
 
-.ctrl {
-  margin-top: 20%;
-  font-size: 0.7em;
-}
-
-.cmd {
-  width: 55px;
-}
-
 .spacebar {
   width: 260px;
 }
@@ -311,5 +305,9 @@ $key-color: #202124;
   height: 220px;
   border: 1px solid #9f6e57;
   border-radius: 10px;
+}
+
+.fn > span {
+  margin: 0 0 4% 6%;
 }
 </style>

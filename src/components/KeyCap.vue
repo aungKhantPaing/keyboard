@@ -11,6 +11,7 @@
       'shift-right': shiftKeyRight,
       fn: fnKey,
       cmd: cmdKey,
+      'keydown-style': isDown,
     }"
   >
     <span v-if="sideLabel" class="square-content">
@@ -37,10 +38,11 @@
       fn
     </span>
   </div>
-  <div v-else class="square-key-cont spacebar"></div>
+  <div v-else class="square-key-cont spacebar" :class="{ 'keydown-style': isDown }"></div>
 </template>
 
 <script>
+import { Howl, Howler } from 'howler';
 export default {
   props: {
     label: {
@@ -90,6 +92,42 @@ export default {
       type: Boolean,
       default: false,
     },
+    keyCode: {
+      type: Number,
+      default: null,
+    },
+  },
+  data() {
+    return {
+      isDown: false,
+    };
+  },
+  mounted() {
+    //! audio note working
+    // let keydownSound = new Howl({
+    //   src: ['./assets/keydown.mp3'],
+    //   volume: 1.0,
+    //   autoplay: false,
+    // });
+    // let keyupSound = new Howl({ src: ['./assets/keyup.mp3'], volume: 1.0, autoplay: false });
+    if (this.keyCode) {
+      window.addEventListener('keydown', (event) => {
+        if (event.keyCode == this.keyCode) {
+          if (!this.isDown) {
+            console.warn('*DOWN: ' + event.keyCode);
+          }
+          this.isDown = true;
+        }
+      });
+      window.addEventListener('keyup', (event) => {
+        if (event.keyCode == this.keyCode) {
+          if (this.isDown) {
+            console.warn('*UP: ' + event.keyCode);
+          }
+          this.isDown = false;
+        }
+      });
+    }
   },
 };
 </script>
@@ -97,6 +135,10 @@ export default {
 <style lang="scss" scoped>
 $rose-gold: #fddbc9;
 $key-color: #202124;
+
+.keydown-style {
+  border: 2px solid $rose-gold !important;
+}
 
 .square-key-cont {
   display: flex;

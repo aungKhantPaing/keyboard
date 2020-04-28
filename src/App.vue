@@ -19,6 +19,7 @@ export default {
 
 html,
 body {
+  // font-size: 0.1em;
   font-family: 'Varela', sans-serif;
   display: flex;
   justify-content: center;
@@ -31,11 +32,10 @@ body {
   color: white;
 }
 #app {
-  text-align: -webkit-center !important;
   // font-family: Avenir, Helvetica, Arial, sans-serif;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
   // color: #2c3e50;
   // margin-top: 60px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>
