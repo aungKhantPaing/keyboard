@@ -15,6 +15,21 @@
     ></v-textarea>
     <!-- emit event manually. since 'enter' event do not transmit with no reason. -->
     <Keyboard></Keyboard>
+    <v-system-bar color="#fddbc9" height="30" class="system-bar">
+      <v-spacer></v-spacer>
+      <v-btn
+        tile
+        small
+        icon
+        @click="openLink('https://twitter.com/sgiori8/status/1254552525677756416')"
+      >
+        <v-icon>mdi-pencil-ruler</v-icon>
+      </v-btn>
+      <v-divider vertical style="margin: 4px;"></v-divider>
+      <v-btn tile small icon @click="openLink('https://github.com/aungKhantPaing/keyboard')">
+        <v-icon>mdi-github</v-icon>
+      </v-btn>
+    </v-system-bar>
   </div>
 </template>
 
@@ -37,6 +52,9 @@ export default {
           location: 0,
         }),
       );
+    },
+    openLink(link) {
+      window.open(link);
     },
     // onTab() {
     //   this.text += '        ';
@@ -61,6 +79,13 @@ body {
   width: 100%;
   background: white;
   color: white;
+}
+
+.system-bar {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
 }
 
 #app {
