@@ -2,21 +2,19 @@
   <div class="container" tabindex="-1">
     <div class="key-container">
       <div class="row1">
-        <span class="esc f-keys">
-          <span>esc</span>
-        </span>
-        <span class="F1 f-keys">F1</span>
-        <span class="F2 f-keys">F2</span>
-        <span class="F3 f-keys">F3</span>
-        <span class="F4 f-keys">F4</span>
-        <span class="F5 f-keys">F5</span>
-        <span class="F6 f-keys">F6</span>
-        <span class="F7 f-keys">F7</span>
-        <span class="F8 f-keys">F8</span>
-        <span class="F9 f-keys">F9</span>
-        <span class="F10 f-keys">F10</span>
-        <span class="F11 f-keys">F11</span>
-        <span class="F12 f-keys">F12</span>
+        <KeyCap f-key esc-key :isDown="isDown(27)" />
+        <KeyCap label="F1" f-key />
+        <KeyCap label="F2" f-key />
+        <KeyCap label="F3" f-key />
+        <KeyCap label="F4" f-key />
+        <KeyCap label="F5" f-key />
+        <KeyCap label="F6" f-key />
+        <KeyCap label="F7" f-key />
+        <KeyCap label="F8" f-key />
+        <KeyCap label="F9" f-key />
+        <KeyCap label="F10" f-key />
+        <KeyCap label="F11" f-key />
+        <KeyCap label="F12" f-key />
         <span class="touchID f-keys"></span>
       </div>
 
@@ -55,7 +53,7 @@
       </div>
 
       <div class="row4">
-        <KeyCap cap-key :isDown="isDown(20)" />
+        <KeyCap cap-key :capOn="capOn" :isDown="isDown(20)" />
         <KeyCap label="A" :isDown="isDown(65)" />
         <KeyCap label="S" :isDown="isDown(83)" />
         <KeyCap label="D" :isDown="isDown(68)" />
@@ -111,6 +109,8 @@
 
 <script>
 import KeyCap from '@/components/KeyCap.vue';
+import { Howl, Howler } from 'howler';
+
 export default {
   components: {
     KeyCap,
@@ -118,6 +118,7 @@ export default {
   data() {
     return {
       downKeys: [],
+      capOn: false,
     };
   },
   methods: {
@@ -126,22 +127,21 @@ export default {
     },
   },
   mounted() {
-    //! audio note working
-    // let keydownSound = new Howl({
-    //   src: ['./assets/keydown.mp3'],
-    //   volume: 1.0,
-    //   autoplay: false,
-    // });
-    // let keyupSound = new Howl({ src: ['./assets/keyup.mp3'], volume: 1.0, autoplay: false });
-
-    window.addEventListener('keydown', (event) => {
+    const sound = new Howl({
+      src: ['/keypress.mp3'],
+    });
+    document.addEventListener('keydown', (event) => {
       let keyId = event.keyCode + event.location / 10;
       if (!this.isDown(keyId)) {
+        sound.play();
         this.downKeys.push(keyId);
+
+        if (keyId == 9) event.preventDefault(); // prevent from tabbing out
+        if (keyId == 20)
+          this.capOn = !(event.getModifierState && event.getModifierState('CapsLock'));
       }
-      if (keyId == 9) event.preventDefault();
     });
-    window.addEventListener('keyup', (event) => {
+    document.addEventListener('keyup', (event) => {
       let keyId = event.keyCode + event.location / 10;
       this.downKeys = this.downKeys.filter((k) => k != keyId);
     });

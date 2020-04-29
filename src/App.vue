@@ -2,7 +2,7 @@
   <div id="app">
     <br />
     <v-textarea
-      v-model="text"
+      v-model.lazy="text"
       class="textbox"
       filled
       placeholder="type something..."
@@ -22,6 +22,7 @@
 
 <script>
 import Keyboard from '@/components/Keyboard.vue';
+
 export default {
   name: 'App',
   components: {
@@ -32,7 +33,7 @@ export default {
   },
   methods: {
     onEnter(event) {
-      window.dispatchEvent(
+      document.dispatchEvent(
         new KeyboardEvent(event.type, {
           keyCode: 13, // example values
           location: 0,

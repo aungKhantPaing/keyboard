@@ -1,6 +1,15 @@
 <template>
+  <span v-if="fKey" class="f-keys" :class="{ esc: escKey, 'keydown-style': isDown }">
+    <span v-if="escKey">esc</span>
+    {{ label }}
+  </span>
   <div
-    v-if="!spacebar"
+    v-else-if="spacebar"
+    class="square-key-cont spacebar"
+    :class="{ 'keydown-style': isDown }"
+  ></div>
+  <div
+    v-else
     class="square-key-cont"
     :class="{
       delete: deleteKey,
@@ -17,7 +26,10 @@
     <span v-if="sideLabel" class="square-content">
       {{ sideLabel }}
     </span>
-    <span :class="{ 'square-content': sideLabel || capKey, period: capKey, ctrl: ctrlKey }">
+    <span v-if="capKey" class="square-content period" :style="{ opacity: capOn ? 1 : 0 }">
+      .
+    </span>
+    <span :class="{ 'square-content': sideLabel, ctrl: ctrlKey }">
       {{ label }}
     </span>
 
@@ -38,7 +50,6 @@
       fn
     </span>
   </div>
-  <div v-else class="square-key-cont spacebar" :class="{ 'keydown-style': isDown }"></div>
 </template>
 
 <script>
@@ -61,6 +72,10 @@ export default {
       default: false,
     },
     capKey: {
+      type: Boolean,
+      default: false,
+    },
+    capOn: {
       type: Boolean,
       default: false,
     },
@@ -89,6 +104,14 @@ export default {
       default: false,
     },
     spacebar: {
+      type: Boolean,
+      default: false,
+    },
+    fKey: {
+      type: Boolean,
+      default: false,
+    },
+    escKey: {
       type: Boolean,
       default: false,
     },
@@ -218,5 +241,31 @@ $key-color: #202124;
 //*SPACE
 .spacebar {
   width: 260px !important;
+}
+
+//* F
+.f-keys {
+  font-size: 0.5em !important;
+  letter-spacing: -0.05em;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: $key-color;
+  border-radius: 5px;
+  border: 2px solid black;
+  padding: 0;
+  height: 23px;
+  width: 48px;
+}
+
+//* ESC
+.esc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 0.7em !important;
+}
+.esc > span:first-of-type {
+  margin: 0 0 0 4%;
 }
 </style>
