@@ -8,6 +8,13 @@
     class="square-key-cont spacebar"
     :class="{ 'keydown-style': isDown }"
   ></div>
+  <span
+    v-else-if="arrowKey"
+    class="arrow-content"
+    :class="{ 'down-arrow': downArrow, 'keydown-arrow': isDown }"
+  >
+    ^
+  </span>
   <div
     v-else
     class="square-key-cont"
@@ -112,6 +119,14 @@ export default {
       default: false,
     },
     escKey: {
+      type: Boolean,
+      default: false,
+    },
+    arrowKey: {
+      type: Boolean,
+      default: false,
+    },
+    downArrow: {
       type: Boolean,
       default: false,
     },
@@ -267,5 +282,25 @@ $key-color: #202124;
 }
 .esc > span:first-of-type {
   margin: 0 0 0 4%;
+}
+
+//* ARROW
+.arrow-content {
+  flex-direction: column;
+  background: $key-color;
+  align-items: center;
+  border: 2px solid black;
+  border-bottom: 1px solid black;
+  display: flex;
+  border-radius: 5px 5px 0px 0px;
+  height: 22.5px;
+  width: 45px;
+}
+.keydown-arrow {
+  border: 2px solid $rose-gold !important;
+  border-bottom: 1px solid $rose-gold !important;
+}
+.down-arrow {
+  transform: rotate(180deg);
 }
 </style>

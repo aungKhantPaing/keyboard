@@ -92,13 +92,9 @@
         <KeyCap label="command" side-label="⌘" ctrl-key cmd-key />
         <KeyCap label="option" side-label="⌥" ctrl-key :isDown="isDown(18.2)" />
         <KeyCap label="&lt;" :isDown="isDown(37)" />
-        <div class="square-key-cont">
-          <span class="square-content">
-            ^
-          </span>
-          <span class="square-content down-arrow">
-            ^
-          </span>
+        <div class="arrow-key-cont">
+          <KeyCap arrow-key :isDown="isDown(38)" />
+          <KeyCap arrow-key :isDown="isDown(40)" down-arrow />
         </div>
         <KeyCap label=">" :isDown="isDown(39)" />
       </div>
@@ -234,20 +230,30 @@ $key-color: #202124;
   margin: 0 0 0 4%;
 }
 
-.square-key-cont {
+.arrow-key-cont {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid black;
-  background: $key-color;
-  height: 45px;
-  width: 45px;
   border-radius: 5px;
   font-size: 0.9em;
+  height: 49px;
+  background-color: $rose-gold;
 }
 
-.square-content {
-  height: 100%;
+.arrow-content {
+  flex-direction: column;
+  background: $key-color;
+  align-items: center;
+  border: 2px solid black;
+  border-bottom: 1px solid black;
+  display: flex;
+  border-radius: 5px 5px 0px 0px;
+  height: 22.5px;
+  width: 45px;
+}
+
+.down-arrow {
+  transform: rotate(180deg);
 }
 
 .delete > span {
@@ -323,10 +329,6 @@ $key-color: #202124;
 
 .spacebar {
   width: 260px;
-}
-
-.down-arrow {
-  transform: rotate(180deg);
 }
 
 .trackpad {
