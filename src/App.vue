@@ -2,7 +2,6 @@
   <div id="app">
     <br />
     <v-textarea
-      v-model.lazy="text"
       class="textbox"
       filled
       placeholder="type something..."
@@ -11,7 +10,6 @@
       rounded
       background-color="#fddbc9"
       autofocus
-      @keydown.tab="onTab"
       @keydown.enter="onEnter"
       @keyup.enter="onEnter"
     ></v-textarea>
@@ -40,9 +38,9 @@ export default {
         }),
       );
     },
-    onTab() {
-      this.text += '        ';
-    },
+    // onTab() {
+    //   this.text += '        ';
+    // },
   },
 };
 </script>

@@ -127,13 +127,17 @@ export default {
     },
   },
   mounted() {
-    const sound = new Howl({
-      src: ['/keypress.mp3'],
-    });
+    const keydownSound = new Howl({
+        src: ['/keydown.mp3'],
+      }),
+      keyupSound = new Howl({
+        src: ['/keyup.mp3'],
+      });
+    Howler.volume(0.3);
     document.addEventListener('keydown', (event) => {
       let keyId = event.keyCode + event.location / 10;
       if (!this.isDown(keyId)) {
-        sound.play();
+        keydownSound.play();
         this.downKeys.push(keyId);
 
         if (keyId == 9) event.preventDefault(); // prevent from tabbing out
@@ -142,6 +146,7 @@ export default {
       }
     });
     document.addEventListener('keyup', (event) => {
+      keyupSound.play();
       let keyId = event.keyCode + event.location / 10;
       this.downKeys = this.downKeys.filter((k) => k != keyId);
     });
