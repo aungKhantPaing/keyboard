@@ -1,4 +1,5 @@
-const Keycodes = {
+// https://github.com/wesbos/keycodes
+export const Keycodes = {
   Backspace: 8,
   Tab: 9,
   Enter: 13,
@@ -100,4 +101,3 @@ const Keycodes = {
   ']': 221,
   "'": 222,
 };
-export default Keycodes;

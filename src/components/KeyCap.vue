@@ -260,7 +260,7 @@ $key-color: #202124;
 
 //* F
 .f-keys {
-  font-size: 0.5em !important;
+  font-size: 0.5em;
   letter-spacing: -0.05em;
   display: flex;
   justify-content: center;
@@ -276,12 +276,12 @@ $key-color: #202124;
 //* ESC
 .esc {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: flex-start !important;
+  align-items: center !important;
   font-size: 0.7em !important;
 }
 .esc > span:first-of-type {
-  margin: 0 0 0 4%;
+  margin: 0 0 0 4% !important;
 }
 
 //* ARROW

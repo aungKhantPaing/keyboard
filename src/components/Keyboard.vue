@@ -105,6 +105,7 @@
 
 <script>
 import KeyCap from '@/components/KeyCap.vue';
+import { Keycodes } from '@/keycodes.ts';
 import { Howl, Howler } from 'howler';
 
 export default {
@@ -113,13 +114,7 @@ export default {
   },
   data() {
     return {
-      keysState: new Map(
-        Array(223)
-          .fill()
-          .map((_, i) => i)
-          .concat([16.1, 16.2, 17.1, 17.2, 18.1, 18.2])
-          .map((k) => [k, false]),
-      ),
+      keysState: new Map(Object.entries(Keycodes).map(([_, keycode]) => [keycode, false])),
       capOn: false,
     };
   },
@@ -136,9 +131,8 @@ export default {
       if (!this.keysState.get(keyId)) {
         keydownSound.play();
 
-        let newMapValue = new Map([[keyId, true]]);
-        this.keysState = new Map([...this.keysState, ...newMapValue]);
-        // this.downKeys.push(keyId);
+        let changedValue = new Map([[keyId, true]]);
+        this.keysState = new Map([...this.keysState, ...changedValue]);
 
         if (keyId == 9) event.preventDefault(); // prevent from tabbing out
         if (keyId == 20)
@@ -149,9 +143,8 @@ export default {
       keyupSound.play();
       let keyId = event.keyCode + event.location / 10;
 
-      let newMapValue = new Map([[keyId, false]]);
-      this.keysState = new Map([...this.keysState, ...newMapValue]);
-      // this.downKeys = this.downKeys.filter((k) => k != keyId);
+      let changedValue = new Map([[keyId, false]]);
+      this.keysState = new Map([...this.keysState, ...changedValue]);
     });
   },
 };
@@ -207,7 +200,10 @@ $key-color: #202124;
   margin: 0 0.5% 0% 0.5%;
 }
 
-.f-keys {
+.touchID {
+  width: 23px;
+  border-radius: 5px;
+  // f-keys style
   font-size: 0.5em !important;
   letter-spacing: -0.05em;
   display: flex;
@@ -218,12 +214,7 @@ $key-color: #202124;
   border: 2px solid black;
   padding: 0;
   height: 23px;
-  width: 48px;
-}
-
-.touchID {
-  width: 23px;
-  border-radius: 5px;
+  // width: 48px;
 }
 
 .arrow-key-cont {
