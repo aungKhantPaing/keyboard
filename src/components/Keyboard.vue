@@ -2,7 +2,7 @@
   <div class="container" tabindex="-1">
     <div class="key-container">
       <div class="row1">
-        <KeyCap f-key esc-key :isDown="isDown(27)" />
+        <KeyCap f-key esc-key :isDown="keysState.get(27)" />
         <KeyCap label="F1" f-key />
         <KeyCap label="F2" f-key />
         <KeyCap label="F3" f-key />
@@ -19,84 +19,84 @@
       </div>
 
       <div class="row2">
-        <KeyCap label="`" side-label="~" :isDown="isDown(192)" />
-        <KeyCap label="1" side-label="!" :isDown="isDown(49)" />
-        <KeyCap label="2" side-label="@" :isDown="isDown(50)" />
-        <KeyCap label="3" side-label="#" :isDown="isDown(51)" />
-        <KeyCap label="4" side-label="$" :isDown="isDown(52)" />
-        <KeyCap label="5" side-label="%" :isDown="isDown(53)" />
-        <KeyCap label="6" side-label="^" :isDown="isDown(54)" />
-        <KeyCap label="7" side-label="&amp;" :isDown="isDown(55)" />
-        <KeyCap label="8" side-label="*" :isDown="isDown(56)" />
-        <KeyCap label="9" side-label="(" :isDown="isDown(57)" />
-        <KeyCap label="0" side-label=")" :isDown="isDown(48)" />
-        <KeyCap label="-" side-label="_" :isDown="isDown(189)" />
-        <KeyCap label="=" side-label="+" :isDown="isDown(187)" />
-        <KeyCap delete-key :isDown="isDown(8)" />
+        <KeyCap label="`" side-label="~" :isDown="keysState.get(192)" />
+        <KeyCap label="1" side-label="!" :isDown="keysState.get(49)" />
+        <KeyCap label="2" side-label="@" :isDown="keysState.get(50)" />
+        <KeyCap label="3" side-label="#" :isDown="keysState.get(51)" />
+        <KeyCap label="4" side-label="$" :isDown="keysState.get(52)" />
+        <KeyCap label="5" side-label="%" :isDown="keysState.get(53)" />
+        <KeyCap label="6" side-label="^" :isDown="keysState.get(54)" />
+        <KeyCap label="7" side-label="&amp;" :isDown="keysState.get(55)" />
+        <KeyCap label="8" side-label="*" :isDown="keysState.get(56)" />
+        <KeyCap label="9" side-label="(" :isDown="keysState.get(57)" />
+        <KeyCap label="0" side-label=")" :isDown="keysState.get(48)" />
+        <KeyCap label="-" side-label="_" :isDown="keysState.get(189)" />
+        <KeyCap label="=" side-label="+" :isDown="keysState.get(187)" />
+        <KeyCap delete-key :isDown="keysState.get(8)" />
       </div>
 
       <div class="row3">
-        <KeyCap tab-key :isDown="isDown(9)" />
-        <KeyCap label="Q" :isDown="isDown(81)" />
-        <KeyCap label="W" :isDown="isDown(87)" />
-        <KeyCap label="E" :isDown="isDown(69)" />
-        <KeyCap label="R" :isDown="isDown(82)" />
-        <KeyCap label="T" :isDown="isDown(84)" />
-        <KeyCap label="Y" :isDown="isDown(89)" />
-        <KeyCap label="U" :isDown="isDown(85)" />
-        <KeyCap label="I" :isDown="isDown(73)" />
-        <KeyCap label="O" :isDown="isDown(79)" />
-        <KeyCap label="P" :isDown="isDown(80)" />
-        <KeyCap label="[" side-label="{" :isDown="isDown(219)" />
-        <KeyCap label="]" side-label="}" :isDown="isDown(221)" />
-        <KeyCap label="\" side-label="|" :isDown="isDown(220)" />
+        <KeyCap tab-key :isDown="keysState.get(9)" />
+        <KeyCap label="Q" :isDown="keysState.get(81)" />
+        <KeyCap label="W" :isDown="keysState.get(87)" />
+        <KeyCap label="E" :isDown="keysState.get(69)" />
+        <KeyCap label="R" :isDown="keysState.get(82)" />
+        <KeyCap label="T" :isDown="keysState.get(84)" />
+        <KeyCap label="Y" :isDown="keysState.get(89)" />
+        <KeyCap label="U" :isDown="keysState.get(85)" />
+        <KeyCap label="I" :isDown="keysState.get(73)" />
+        <KeyCap label="O" :isDown="keysState.get(79)" />
+        <KeyCap label="P" :isDown="keysState.get(80)" />
+        <KeyCap label="[" side-label="{" :isDown="keysState.get(219)" />
+        <KeyCap label="]" side-label="}" :isDown="keysState.get(221)" />
+        <KeyCap label="\" side-label="|" :isDown="keysState.get(220)" />
       </div>
 
       <div class="row4">
-        <KeyCap cap-key :capOn="capOn" :isDown="isDown(20)" />
-        <KeyCap label="A" :isDown="isDown(65)" />
-        <KeyCap label="S" :isDown="isDown(83)" />
-        <KeyCap label="D" :isDown="isDown(68)" />
-        <KeyCap label="F" :isDown="isDown(70)" />
-        <KeyCap label="G" :isDown="isDown(71)" />
-        <KeyCap label="H" :isDown="isDown(72)" />
-        <KeyCap label="J" :isDown="isDown(74)" />
-        <KeyCap label="K" :isDown="isDown(75)" />
-        <KeyCap label="L" :isDown="isDown(76)" />
-        <KeyCap label=";" side-label=":" :isDown="isDown(186)" />
-        <KeyCap label="'" side-label='"' :isDown="isDown(222)" />
-        <KeyCap return-key :isDown="isDown(13)" />
+        <KeyCap cap-key :capOn="capOn" :isDown="keysState.get(20)" />
+        <KeyCap label="A" :isDown="keysState.get(65)" />
+        <KeyCap label="S" :isDown="keysState.get(83)" />
+        <KeyCap label="D" :isDown="keysState.get(68)" />
+        <KeyCap label="F" :isDown="keysState.get(70)" />
+        <KeyCap label="G" :isDown="keysState.get(71)" />
+        <KeyCap label="H" :isDown="keysState.get(72)" />
+        <KeyCap label="J" :isDown="keysState.get(74)" />
+        <KeyCap label="K" :isDown="keysState.get(75)" />
+        <KeyCap label="L" :isDown="keysState.get(76)" />
+        <KeyCap label=";" side-label=":" :isDown="keysState.get(186)" />
+        <KeyCap label="'" side-label='"' :isDown="keysState.get(222)" />
+        <KeyCap return-key :isDown="keysState.get(13)" />
       </div>
 
       <div class="row5">
-        <KeyCap shift-key-left :isDown="isDown(16.1)" />
-        <KeyCap label="Z" :isDown="isDown(90)" />
-        <KeyCap label="X" :isDown="isDown(88)" />
-        <KeyCap label="C" :isDown="isDown(67)" />
-        <KeyCap label="V" :isDown="isDown(86)" />
-        <KeyCap label="B" :isDown="isDown(66)" />
-        <KeyCap label="N" :isDown="isDown(78)" />
-        <KeyCap label="M" :isDown="isDown(77)" />
-        <KeyCap label="," side-label="&lt;" :isDown="isDown(188)" />
-        <KeyCap label="." side-label=">" :isDown="isDown(190)" />
-        <KeyCap label="/" side-label="?" :isDown="isDown(191)" />
-        <KeyCap shift-key-right :isDown="isDown(16.2)" />
+        <KeyCap shift-key-left :isDown="keysState.get(16.1)" />
+        <KeyCap label="Z" :isDown="keysState.get(90)" />
+        <KeyCap label="X" :isDown="keysState.get(88)" />
+        <KeyCap label="C" :isDown="keysState.get(67)" />
+        <KeyCap label="V" :isDown="keysState.get(86)" />
+        <KeyCap label="B" :isDown="keysState.get(66)" />
+        <KeyCap label="N" :isDown="keysState.get(78)" />
+        <KeyCap label="M" :isDown="keysState.get(77)" />
+        <KeyCap label="," side-label="&lt;" :isDown="keysState.get(188)" />
+        <KeyCap label="." side-label=">" :isDown="keysState.get(190)" />
+        <KeyCap label="/" side-label="?" :isDown="keysState.get(191)" />
+        <KeyCap shift-key-right :isDown="keysState.get(16.2)" />
       </div>
 
       <div class="row6">
         <KeyCap fn-key />
-        <KeyCap label="control" side-label="^" ctrl-key :isDown="isDown(17.1)" />
-        <KeyCap label="option" side-label="⌥" ctrl-key :isDown="isDown(18.1)" />
+        <KeyCap label="control" side-label="^" ctrl-key :isDown="keysState.get(17.1)" />
+        <KeyCap label="option" side-label="⌥" ctrl-key :isDown="keysState.get(18.1)" />
         <KeyCap label="command" side-label="⌘" ctrl-key cmd-key />
-        <KeyCap spacebar :isDown="isDown(32)" />
+        <KeyCap spacebar :isDown="keysState.get(32)" />
         <KeyCap label="command" side-label="⌘" ctrl-key cmd-key />
-        <KeyCap label="option" side-label="⌥" ctrl-key :isDown="isDown(18.2)" />
-        <KeyCap label="&lt;" :isDown="isDown(37)" />
+        <KeyCap label="option" side-label="⌥" ctrl-key :isDown="keysState.get(18.2)" />
+        <KeyCap label="&lt;" :isDown="keysState.get(37)" />
         <div class="arrow-key-cont">
-          <KeyCap arrow-key :isDown="isDown(38)" />
-          <KeyCap arrow-key :isDown="isDown(40)" down-arrow />
+          <KeyCap arrow-key :isDown="keysState.get(38)" />
+          <KeyCap arrow-key :isDown="keysState.get(40)" down-arrow />
         </div>
-        <KeyCap label=">" :isDown="isDown(39)" />
+        <KeyCap label=">" :isDown="keysState.get(39)" />
       </div>
     </div>
     <div class="trackpad"></div>
@@ -113,14 +113,15 @@ export default {
   },
   data() {
     return {
-      downKeys: [],
+      keysState: new Map(
+        Array(223)
+          .fill()
+          .map((_, i) => i)
+          .concat([16.1, 16.2, 17.1, 17.2, 18.1, 18.2])
+          .map((k) => [k, false]),
+      ),
       capOn: false,
     };
-  },
-  methods: {
-    isDown(keycode) {
-      return this.downKeys.includes(keycode);
-    },
   },
   mounted() {
     const keydownSound = new Howl({
@@ -132,9 +133,12 @@ export default {
     Howler.volume(0.3);
     document.addEventListener('keydown', (event) => {
       let keyId = event.keyCode + event.location / 10;
-      if (!this.isDown(keyId)) {
+      if (!this.keysState.get(keyId)) {
         keydownSound.play();
-        this.downKeys.push(keyId);
+
+        let newMapValue = new Map([[keyId, true]]);
+        this.keysState = new Map([...this.keysState, ...newMapValue]);
+        // this.downKeys.push(keyId);
 
         if (keyId == 9) event.preventDefault(); // prevent from tabbing out
         if (keyId == 20)
@@ -144,7 +148,10 @@ export default {
     document.addEventListener('keyup', (event) => {
       keyupSound.play();
       let keyId = event.keyCode + event.location / 10;
-      this.downKeys = this.downKeys.filter((k) => k != keyId);
+
+      let newMapValue = new Map([[keyId, false]]);
+      this.keysState = new Map([...this.keysState, ...newMapValue]);
+      // this.downKeys = this.downKeys.filter((k) => k != keyId);
     });
   },
 };
