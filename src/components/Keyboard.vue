@@ -135,8 +135,7 @@ export default {
         this.keysState = new Map([...this.keysState, ...changedValue]);
 
         if (keyId == 9) event.preventDefault(); // prevent from tabbing out
-        if (keyId == 20)
-          this.capOn = !(event.getModifierState && event.getModifierState('CapsLock'));
+        if (keyId == 20) this.capOn = event.getModifierState && event.getModifierState('CapsLock');
       }
     });
     document.addEventListener('keyup', (event) => {
